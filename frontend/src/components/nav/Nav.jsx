@@ -6,10 +6,11 @@ function Nav() {
   return (
     <nav>
       <ul>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/competitions/add">Add Competition</Link></li>
-        <li><Link to="/competitions/view">View Competitions</Link></li>
+        {/* <li><Link to="/competitions/view">View Competitions</Link></li>
         <li><Link to="/challenges/add">Add Challenge</Link></li>
-        <li><Link to="/challenges/view">View Challenges</Link></li>
+        <li><Link to="/challenges/view">View Challenges</Link></li> */}
       </ul>
     </nav>
   );

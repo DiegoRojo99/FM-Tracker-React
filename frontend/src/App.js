@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       <Route path="/competitions/add" element={<Layout><AddCompetition /></Layout>} />
-      <Route path="/home" element={<Layout><Home /></Layout>} />
+      <Route path="/" element={<Layout><Home /></Layout>} />
     </Routes>
   );
 }
