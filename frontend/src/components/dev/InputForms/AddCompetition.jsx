@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import './AddCompetition.css';
+import '../Dev.css';
 
 function AddCompetition() {
   const [competitionName, setCompetitionName] = useState('');
   const [countryId, setCountryId] = useState('');
   const [competitionType, setCompetitionType] = useState('league');
   const [countries, setCountries] = useState([]);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     // Fetch countries from backend when component mounts
-    fetch('http://localhost:5000/api/countries')
+    fetch(backendUrl+'/api/countries')
       .then(response => response.json())
       .then(data => setCountries(data))
       .catch(error => {
