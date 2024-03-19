@@ -20,6 +20,7 @@ function AddTeam() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
+    console.log("IMG: ", image)
   };
 
   const handleSubmit = async (event) => {

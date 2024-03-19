@@ -16,7 +16,7 @@ function AddCompetition() {
       .catch(error => {
         console.error('Error fetching countries:', error);
       });
-  }, []); // Empty dependency array to fetch data only once on mount
+  }, [backendUrl]); // Empty dependency array to fetch data only once on mount
 
   const handleSubmit = async (event) => {
     event.preventDefault();
