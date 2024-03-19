@@ -108,7 +108,6 @@ export const addSaveTrophyRelation = (req: Request, res: Response) => {
 
 export const addTeam = (req: Request, res: Response) => {
   const { teamName, countryId, image } = req.body;
-  console.log("REQ: ", req)
 
   if (!teamName || !countryId) {
     return res.status(400).json({ error: 'Team name and country ID are required' });
