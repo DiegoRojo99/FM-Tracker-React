@@ -9,7 +9,7 @@ export const addCompetition = (req: Request, res: Response) => {
   }
 
   // Check if competition type is valid
-  if (competitionType !== 'competition' && competitionType !== 'cup') {
+  if (competitionType !== 'league' && competitionType !== 'cup') {
     return res.status(400).json({ error: 'Invalid competition type' });
   }
 
