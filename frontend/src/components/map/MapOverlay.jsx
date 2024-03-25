@@ -1,11 +1,21 @@
+import { useState, useEffect } from "react"
 
 export default function MapOverlay({competitions}){
 
-  if(!competitions.length){
+  const [showing, setShowing] = useState(!!competitions.length);
+
+  useEffect(() => {
+    setShowing(!!competitions.length);
+  }, [competitions]);
+
+  if(!showing){
     return <></>
   }
   return (
     <div className='map-overlay' >
+      <div className='map-overlay-top' >
+        <div className="map-overlay-cross" onClick={() => setShowing(false)}>X</div>
+      </div>
       {competitions && competitions.length ? 
         <>
           {competitions.map(l => <MapOverlayRow competition={l} />)}

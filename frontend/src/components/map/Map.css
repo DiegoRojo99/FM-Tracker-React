@@ -12,6 +12,15 @@
   border: 4px solid #471283;
 }
 
+.map-overlay-top{
+  height: 32px;
+}
+.map-overlay-cross{
+  float: right;
+  margin: 8px 12px;
+  cursor: pointer;
+}
+
 .map-row{
   /* background-color: rgb(49, 24, 77, 0.7); */
   height: 48px;
