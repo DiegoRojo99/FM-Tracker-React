@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
+import CrossIcon from './../../img/Cross.svg'
 
 export default function MapOverlay({competitions}){
 
@@ -14,7 +15,7 @@ export default function MapOverlay({competitions}){
   return (
     <div className='map-overlay' >
       <div className='map-overlay-top' >
-        <div className="map-overlay-cross" onClick={() => setShowing(false)}>X</div>
+        <img src={CrossIcon} className="map-overlay-cross white-image" onClick={() => setShowing(false)} />
       </div>
       {competitions && competitions.length ? 
         <>
