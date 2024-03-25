@@ -3,9 +3,9 @@ import Nav from './nav/Nav';
 
 function Layout({ children }) {
   return (
-    <div>
+    <div className='full'>
       <Nav />
-      <div>
+      <div className='full'>
         {children}
       </div>
     </div>
