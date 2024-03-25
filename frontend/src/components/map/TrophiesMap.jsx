@@ -40,6 +40,7 @@ function Map() {
       if(e?.target?.feature?.properties?.name){
         const country = allCompetitions.find(c => c.country_name === e.target.feature.properties.name);
         if(country?.competitions){
+          setCompetitions([]);
           setCompetitions(country.competitions);
         }
         else{
