@@ -1,5 +1,9 @@
 
 export default function MapOverlay({competitions}){
+
+  if(!competitions.length){
+    return <></>
+  }
   return (
     <div className='map-overlay' >
       {competitions && competitions.length ? 
