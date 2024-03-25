@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import CrossIcon from './../../img/Cross.svg'
+import CrossIcon from './../../img/Cross.svg';
+import TrophyIcon from './../../img/Trophy.svg';
 
 export default function MapOverlay({competitions}){
 
@@ -26,11 +27,12 @@ export default function MapOverlay({competitions}){
   )
 }
 
-function MapOverlayRow({competition}){
+function MapOverlayRow({competition, achieved = false}){
 
   return (
     <div className="map-row">
       <p>{competition.name}</p>
+      <img className={achieved ? "trophy-icon white-image" : "trophy-icon"} src={TrophyIcon} />
     </div>
   )
 }
