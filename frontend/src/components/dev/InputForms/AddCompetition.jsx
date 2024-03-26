@@ -33,9 +33,6 @@ function AddCompetition() {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
-      // Optionally, handle successful response
-      console.log('Competition added successfully!');
       // Reset the form fields
       setCompetitionName('');
       setCountryId('');

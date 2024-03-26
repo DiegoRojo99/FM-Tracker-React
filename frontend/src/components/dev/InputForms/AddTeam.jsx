@@ -20,7 +20,6 @@ function AddTeam() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
-    console.log("IMG: ", image)
   };
 
   const handleSubmit = async (event) => {
@@ -45,7 +44,6 @@ function AddTeam() {
         throw new Error('Network response was not ok');
       }
   
-      console.log('Team added successfully!');
       setTeamName('');
       setCountryId('');
     } catch (error) {
