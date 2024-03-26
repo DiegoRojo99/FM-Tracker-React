@@ -44,7 +44,6 @@ function AddTeam() {
         throw new Error('Network response was not ok');
       }
   
-      console.log('Team added successfully!');
       setTeamName('');
       setCountryId('');
     } catch (error) {

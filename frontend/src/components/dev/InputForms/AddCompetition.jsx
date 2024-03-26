@@ -16,7 +16,7 @@ function AddCompetition() {
       .catch(error => {
         console.error('Error fetching countries:', error);
       });
-  }, []); // Empty dependency array to fetch data only once on mount
+  }, [backendUrl]); // Empty dependency array to fetch data only once on mount
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,9 +33,6 @@ function AddCompetition() {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
-      // Optionally, handle successful response
-      console.log('Competition added successfully!');
       // Reset the form fields
       setCompetitionName('');
       setCountryId('');

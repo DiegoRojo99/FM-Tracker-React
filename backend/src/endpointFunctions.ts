@@ -126,3 +126,56 @@ export const addTeam = (req: Request, res: Response) => {
   });
 };
 
+export function getCountries(req: Request, res: Response){
+  db.query('SELECT * FROM country', (err, results) => {
+    if (err) {
+      console.error('Error retrieving countries:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+    res.json(results);
+  });
+};
+
+export function getCompetitions(req: Request, res: Response){
+  db.query('SELECT * FROM competition', (err, results) => {
+    if (err) {
+      console.error('Error retrieving competitions:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+    res.json(results);
+  });
+};
+
+export function getGroupedCompetitions(req: Request, res: Response) {
+  db.query(`
+    SELECT 
+      c.country_id, 
+      c.name AS country_name,
+      JSON_ARRAYAGG(JSON_OBJECT('competition_id', comp.competition_id, 'name', comp.name, 'type', comp.type)) AS competitions
+    FROM 
+      country c
+    LEFT JOIN 
+      competition comp ON c.country_id = comp.country_id
+    GROUP BY 
+      c.country_id, c.name
+  `, (err, results) => {
+    if (err) {
+      console.error('Error retrieving grouped competitions:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    // Parse competitions column to convert the JSON string to an array of objects
+    const groupedCompetitions = results.map((country: any) => {
+      return {
+        country_id: country.country_id,
+        country_name: country.country_name,
+        competitions: JSON.parse(country.competitions)
+      };
+    });
+
+    res.json(groupedCompetitions);
+  });
+};

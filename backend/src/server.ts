@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import db from './db';
-import { addCompetition, addSave, addSaveTrophyRelation, addTeam, addTrophy, addUser } from './endpointFunctions';
+import { addCompetition, addSave, addSaveTrophyRelation, addTeam, addTrophy, addUser, getCountries, getCompetitions, getGroupedCompetitions } from './endpointFunctions';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,16 +15,9 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // Endpoint to get all countries
-app.get('/api/countries', (req, res) => {
-  db.query('SELECT * FROM country', (err, results) => {
-    if (err) {
-      console.error('Error retrieving countries:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-    res.json(results);
-  });
-});
+app.get('/api/countries', getCountries);
+app.get('/api/competitions', getCompetitions);
+app.get('/api/competitions/group', getGroupedCompetitions);
 
 app.post('/api/competitions', addCompetition);
 app.post('/api/saves', addSave);
