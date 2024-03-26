@@ -5,6 +5,7 @@ import Home from './components/home/Home';
 import './App.css';
 import Dev from './components/dev/Dev';
 import Map from './components/map/TrophiesMap';
+import LoginRegister from './components/login/LoginRegister';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/developer" element={<Layout><Dev /></Layout>} />
       <Route path="/map" element={<Layout><Map /></Layout>} />
       <Route path="/" element={<Layout><Home /></Layout>} />
+      <Route path="/login" element={<Layout><LoginRegister /></Layout>} />
     </Routes>
   );
 }
