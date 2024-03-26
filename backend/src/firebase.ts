@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { initializeApp } from "firebase/app";
+import { FirebaseError, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, User } from "firebase/auth";
 
@@ -20,24 +20,20 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-export function registerEmailFirebase(email: string, password: string){
-  console.log("Email: ", email),
-  console.log("Password: ", password)
-  createUserWithEmailAndPassword(auth, email, password)
+export async function registerEmailFirebase(email: string, password: string){
+  const response = await createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    console.log("User: ", user)
     return user;
-    // ...
   })
   .catch((error) => {
-    console.log("User: ", error)
+    console.log("Error: ", error)
     const errorCode = error.code;
     const errorMessage = error.message;
-    return error;
-    // ..
+    return errorCode;
   });
+  return response;
 };
 
 function isUserLoggedIn(user: User){

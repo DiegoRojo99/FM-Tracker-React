@@ -1,10 +1,15 @@
 import { Request, Response } from 'express';
-import db from './db';
 import { registerEmailFirebase } from './firebase';
 
-export function registerEmail(req: Request, res: Response){
+export async function registerEmail(req: Request, res: Response){
   const body = req.body;
-  const registerResult = registerEmailFirebase(body.email, body.password);
-  return registerResult;
+  const registerResult = await registerEmailFirebase(body.email, body.password);
+  if(!registerResult.uid){
+    console.log(registerResult)
+    res.status(400).send(registerResult);
+  }
+  else{
+    res.status(201).json(registerResult);
+  }
 };
 
