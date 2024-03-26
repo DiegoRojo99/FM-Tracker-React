@@ -17,11 +17,17 @@ const LoginRegister = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(requestData),
-    })
-    .then(res => res.json())
-    .catch(error => alert("Error: " + error));
+    });
 
-    console.log("Response: ", response)    
+    if(response.ok){
+      const user = await response.json();
+      localStorage.setItem("access token", user.stsTokenManager.accessToken);
+      localStorage.setItem("refresh token", user.stsTokenManager.refreshToken);
+    }
+    else{
+      alert("Login did not work")  
+    }
+       
   }
 
   async function register(email, password){
@@ -37,6 +43,7 @@ const LoginRegister = () => {
       body: JSON.stringify(requestData),
     });
     if(response.ok){
+      // localStorage.setItem()
       alert("User registered");
     }
     else{
