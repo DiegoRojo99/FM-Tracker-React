@@ -23,6 +23,7 @@ const LoginRegister = () => {
       const user = await response.json();
       localStorage.setItem("access token", user.stsTokenManager.accessToken);
       localStorage.setItem("refresh token", user.stsTokenManager.refreshToken);
+      localStorage.setItem("uid", user.uid);
     }
     else{
       alert("Login did not work")  
@@ -42,11 +43,7 @@ const LoginRegister = () => {
       },
       body: JSON.stringify(requestData),
     });
-    if(response.ok){
-      // localStorage.setItem()
-      alert("User registered");
-    }
-    else{
+    if(!response.ok){
       alert("Register did not work")  
     }
     

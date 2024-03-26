@@ -22,7 +22,6 @@ app.get('/api/competitions/group', getGroupedCompetitions);
 
 app.post('/api/competitions', addCompetition);
 app.post('/api/saves', addSave);
-app.post('/api/users', addUser);
 app.post('/api/trophies', addTrophy);
 app.post('/api/saves-trophies', addSaveTrophyRelation);
 app.post('/api/teams', addTeam);
