@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import db from './db';
 import { addCompetition, addSave, addSaveTrophyRelation, addTeam, addTrophy, addUser, getCountries, getCompetitions, getGroupedCompetitions } from './endpointFunctions';
+import { registerEmail } from './auth';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.post('/api/users', addUser);
 app.post('/api/trophies', addTrophy);
 app.post('/api/saves-trophies', addSaveTrophyRelation);
 app.post('/api/teams', addTeam);
+app.post('/firebase/register/email', registerEmail);
 
 // Start the server
 app.listen(PORT, () => {
