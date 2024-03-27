@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './LoginRegister.css';
 import { auth } from '../../firebase';
-import { signInWithEmailAndPassword } from '@firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@firebase/auth';
 
 const LoginRegister = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
@@ -19,14 +20,25 @@ const LoginRegister = () => {
         const errorMessage = error.message;
         console.log(errorCode, errorMessage)
       });
-       
   }
 
   async function register(email, password){
     await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        // Call backend API to add user to the database
+        const response = await fetch('http://localhost:5000/api/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, email, uid: user.uid }) // Pass username, email, and uid to backend
+        });
+        if (!response.ok) {
+          throw new Error('Failed to add user to database');
+        }
+        console.log('User added to database successfully');
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -50,6 +62,15 @@ const LoginRegister = () => {
     <div className="login-register-container">
       <h2>{isLogin ? 'Login' : 'Register'}</h2>
       <form onSubmit={handleSubmit}>
+        { !isLogin &&
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        }
         <input
           type="email"
           placeholder="Email"

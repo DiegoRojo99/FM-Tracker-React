@@ -45,14 +45,14 @@ export const addSave = (req: Request, res: Response) => {
         res.status(201).json({ id: result.insertId });
     });
 };
-export const addUser = (req: Request, res: Response, uid: string) => {
-  const { username, email, password } = req.body;
+export const addUser = (req: Request, res: Response,) => {
+  const { username, email, uid } = req.body;
 
-  if (!email || !password || !uid) {
-    return res.status(400).json({ error: 'Username, email, password, and UID are required' });
+  if (!username || !email || !uid) {
+    return res.status(400).json({ error: 'Username, email and UID are required' });
   } else {
-    const sql = 'INSERT INTO user (username, email, password, firebase_uid) VALUES (?, ?, ?, ?)';
-    const values = ["username", email, password, uid];
+    const sql = 'INSERT INTO user (username, email, firebase_uid) VALUES (?, ?, ?)';
+    const values = [username, email, uid];
 
     db.query(sql, values, (err, result) => {
       if (err) {
