@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './LoginRegister.css';
+import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from '@firebase/auth';
 
 const LoginRegister = () => {
   const [email, setEmail] = useState('');
@@ -7,46 +9,30 @@ const LoginRegister = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   async function login(email, password){
-    const requestData = {
-      email: email,
-      password: password
-    }
-    const response = await fetch('http://localhost:5000/firebase/login/email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestData),
-    });
-
-    if(response.ok){
-      const user = await response.json();
-      localStorage.setItem("access token", user.stsTokenManager.accessToken);
-      localStorage.setItem("refresh token", user.stsTokenManager.refreshToken);
-      localStorage.setItem("uid", user.uid);
-    }
-    else{
-      alert("Login did not work")  
-    }
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage)
+      });
        
   }
 
   async function register(email, password){
-    const requestData = {
-      email: email,
-      password: password
-    }
-    const response = await fetch('http://localhost:5000/firebase/register/email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestData),
-    });
-    if(!response.ok){
-      alert("Register did not work")  
-    }
-    
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });    
   }
 
   const handleSubmit = (e) => {

@@ -52,7 +52,7 @@ export const addUser = (req: Request, res: Response, uid: string) => {
     return res.status(400).json({ error: 'Username, email, password, and UID are required' });
   } else {
     const sql = 'INSERT INTO user (username, email, password, firebase_uid) VALUES (?, ?, ?, ?)';
-    const values = ["Young Dred", email, password, uid];
+    const values = ["username", email, password, uid];
 
     db.query(sql, values, (err, result) => {
       if (err) {
