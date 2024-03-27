@@ -7,6 +7,7 @@ import Map from './components/map/TrophiesMap';
 import LoginRegister from './components/login/LoginRegister';
 import { onAuthStateChanged } from '@firebase/auth';
 import { auth } from './firebase';
+import ChallengesPage from './components/challenges/ChallengesPage';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="/" element={<Layout><Home /></Layout>} />
       <Route path="/map" element={<Layout><Map /></Layout>} />
       <Route path="/login" element={<Layout><LoginRegister /></Layout>} />
+      <Route path="/challenges" element={<Layout><ChallengesPage /></Layout>} />
     </Routes>
   );
 }
