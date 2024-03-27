@@ -13,12 +13,11 @@ const LoginRegister = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
+        // console.log(errorCode, errorMessage)
       });
   }
 
@@ -26,7 +25,6 @@ const LoginRegister = () => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         // Call backend API to add user to the database
         const response = await fetch('http://localhost:5000/api/users', {
           method: 'POST',
@@ -38,12 +36,11 @@ const LoginRegister = () => {
         if (!response.ok) {
           throw new Error('Failed to add user to database');
         }
-        console.log('User added to database successfully');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        // console.log(errorCode, errorMessage);
       });    
   }
 
