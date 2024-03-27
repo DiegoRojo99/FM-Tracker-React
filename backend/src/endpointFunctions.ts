@@ -45,25 +45,25 @@ export const addSave = (req: Request, res: Response) => {
         res.status(201).json({ id: result.insertId });
     });
 };
+export const addUser = (req: Request, res: Response,) => {
+  const { username, email, uid } = req.body;
 
-export const addUser = (req: Request, res: Response) => {
-    const { username, email, password } = req.body;
-
-    if (!username || !email || !password) {
-        return res.status(400).json({ error: 'Username, email, and password are required' });
-    }
-
-    const sql = 'INSERT INTO user (username, email, password) VALUES (?, ?, ?)';
-    const values = [username, email, password];
+  if (!username || !email || !uid) {
+    return res.status(400).json({ error: 'Username, email and UID are required' });
+  } else {
+    const sql = 'INSERT INTO user (username, email, firebase_uid) VALUES (?, ?, ?)';
+    const values = [username, email, uid];
 
     db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error('Error adding user:', err);
-            return res.status(500).json({ error: 'Error adding user' });
-        }
+      if (err) {
+        console.error('Error adding user:', err);
+        return res.status(500).json({ error: 'Error adding user' });
+      } else {
         console.log('User added successfully:', result.insertId);
         res.status(201).json({ id: result.insertId });
+      }
     });
+  }
 };
 
 export const addTrophy = (req: Request, res: Response) => {
@@ -179,3 +179,5 @@ export function getGroupedCompetitions(req: Request, res: Response) {
     res.json(groupedCompetitions);
   });
 };
+
+
