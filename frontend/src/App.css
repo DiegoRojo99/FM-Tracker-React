@@ -13,3 +13,7 @@ html, body {
 .white-image{
   filter: brightness(0) invert(1) sepia(1) saturate(10000%) hue-rotate(180deg);
 }
+
+p:hover{
+  text-decoration: none;
+}

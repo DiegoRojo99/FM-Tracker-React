@@ -1,0 +1,28 @@
+.challenge-list{
+	display: flex;
+}
+.challenge-card {
+  border: 1px solid #ccc;
+	background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 16px;
+	flex: 1;
+}
+
+.challenge-card h3 {
+  margin-top: 0;
+	text-align: center;
+}
+
+.challenge-card h4 {
+  margin-bottom: 5px;
+}
+
+.challenge-card ul {
+  padding-left: 20px;
+}
+
+.challenge-card li {
+  margin-bottom: 5px;
+}
