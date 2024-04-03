@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import './Challenges.css';
 
 export default function ChallengesPage(){
+
+  const [selectedChallenge, setSelectedChallenge] = useState(false);
   const challenges = [
     {
       id: 1,
@@ -61,17 +64,30 @@ export default function ChallengesPage(){
       ]
     }
   ];
+
+  function selectChallenge(challenge){
+    setSelectedChallenge(challenge);
+  }
   
   return (
-    <div className='challenge-list'>
-      {challenges.map(challenge => <ChallengeItem challenge={challenge} />)}
+    <>
+    <div className='selected-challenge'>
+      {selectedChallenge ?
+      <div className='challenge-info'>
+        <h2>{selectedChallenge.name}</h2>
+      </div> 
+      : <></>}
     </div>
+    <div className='challenge-list'>
+      {challenges.map(challenge => <ChallengeItem challenge={challenge} selectChallenge={selectChallenge} />)}
+    </div>
+    </>
   )
 }
 
-function ChallengeItem({challenge}){
+function ChallengeItem({challenge, selectChallenge}){
   return (
-    <div className="challenge-card">
+    <div className="challenge-card" onClick={() => selectChallenge(challenge)}>
       <h3>{challenge.name}</h3>
       <p>{challenge.description}</p>
       <h4>Trophies Needed:</h4>

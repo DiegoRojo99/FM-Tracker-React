@@ -1,5 +1,9 @@
 .challenge-list{
 	display: flex;
+	flex-direction: column;
+	width: 30%;
+	float: right;
+	overflow-y: scroll;
 }
 .challenge-card {
   border: 1px solid #ccc;
@@ -25,4 +29,10 @@
 
 .challenge-card li {
   margin-bottom: 5px;
+}
+
+.selected-challenge{
+	width: 70%;
+	background-color: rebeccapurple;
+	height: 100%;
 }

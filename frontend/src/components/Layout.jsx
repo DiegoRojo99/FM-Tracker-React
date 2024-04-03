@@ -5,7 +5,7 @@ function Layout({ children }) {
   return (
     <div className='full'>
       <Nav />
-      <div className='full'>
+      <div className='full' style={{display: 'flex'}}>
         {children}
       </div>
     </div>
