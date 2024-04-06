@@ -14,7 +14,7 @@ function App() {
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
+        // const uid = user.uid;
       } else {
         // console.log("user is logged out")
       }

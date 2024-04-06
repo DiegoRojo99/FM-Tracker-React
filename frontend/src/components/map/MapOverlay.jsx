@@ -16,7 +16,7 @@ export default function MapOverlay({competitions}){
   return (
     <div className='map-overlay' >
       <div className='map-overlay-top' >
-        <img src={CrossIcon} className="map-overlay-cross white-image" onClick={() => setShowing(false)} />
+        <img alt="X Cross" src={CrossIcon} className="map-overlay-cross white-image" onClick={() => setShowing(false)} />
       </div>
       {competitions && competitions.length ? 
         <>
@@ -32,7 +32,7 @@ function MapOverlayRow({competition, achieved = false}){
   return (
     <div className="map-row">
       <p>{competition.name}</p>
-      <img className={achieved ? "trophy-icon white-image" : "trophy-icon"} src={TrophyIcon} />
+      <img alt="Trophy" className={achieved ? "trophy-icon white-image" : "trophy-icon"} src={TrophyIcon} />
     </div>
   )
 }

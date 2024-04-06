@@ -11,7 +11,7 @@
   border-radius: 5px;
   padding: 10px;
   margin: 16px;
-	flex: 1;
+	/* flex: 1; */
 }
 
 .challenge-card h3 {
@@ -35,4 +35,51 @@
 	width: 70%;
 	background-color: rebeccapurple;
 	height: 100%;
+}
+
+.challenge-info{
+  text-align: center;
+}
+
+.challenge-trophies{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%; 
+  height: 240px;
+}
+
+.trophy-card{
+  background-color: rgba(204, 204, 204, 0.3);
+  border: #ccc 1px solid;
+  border-radius: 4px;
+  width: 144px;
+  height: 100%;
+  margin: 8px;
+  flex: 1 0 144px;
+  box-sizing: border-box; 
+}
+
+.trophy-card img{
+  height: 192px;
+  width: 112px;
+}
+.trophy-card p{
+  height: 24px;
+  margin: 4px 0;
+  width: 100%;
+}
+
+.trophy-locked{
+  opacity: 0.2;
+}
+
+/* Mobile Challenges */
+@media (max-width: 580px) {
+  .challenge-desc {
+    display: none;
+  }
+  .challenge-card h3{
+    font-size: 12px;
+    height: 30px;
+  }
 }

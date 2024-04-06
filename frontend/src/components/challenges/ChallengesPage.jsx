@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Challenges.css';
+import TrophyIcon from './../../img/Trophy.svg';
 
 export default function ChallengesPage(){
 
@@ -72,11 +73,7 @@ export default function ChallengesPage(){
   return (
     <>
     <div className='selected-challenge'>
-      {selectedChallenge ?
-      <div className='challenge-info'>
-        <h2>{selectedChallenge.name}</h2>
-      </div> 
-      : <></>}
+      {selectedChallenge ? <MainChallenge challenge={selectedChallenge} /> : <></>}
     </div>
     <div className='challenge-list'>
       {challenges.map(challenge => <ChallengeItem challenge={challenge} selectChallenge={selectChallenge} />)}
@@ -85,19 +82,42 @@ export default function ChallengesPage(){
   )
 }
 
+function MainChallenge({challenge}){
+  return (
+    <div className='challenge-info'>
+      <h2>{challenge.name}</h2>
+      <p>{challenge.description}</p>
+      <div className='challenge-trophies'>
+        {challenge.trophiesNeeded.map(t => <TrophyCard trophy={t} />)}
+      </div>
+    </div> 
+  )
+};
+
+function TrophyCard({trophy}){
+  return (
+    <div className='trophy-card' key={trophy.id}>
+      <img src={TrophyIcon} className={trophy.won ? "" : "trophy-locked"} />
+      <p>{trophy.competition}</p>
+    </div>
+  )
+}
+
 function ChallengeItem({challenge, selectChallenge}){
   return (
-    <div className="challenge-card" onClick={() => selectChallenge(challenge)}>
+    <div className="challenge-card" onClick={() => selectChallenge(challenge)} key={challenge}>
       <h3>{challenge.name}</h3>
-      <p>{challenge.description}</p>
-      <h4>Trophies Needed:</h4>
-      <ul>
-        {challenge.trophiesNeeded.map(trophy => (
-          <li key={trophy.id}>
-            <strong>{trophy.name}</strong> - {trophy.description}
-          </li>
-        ))}
-      </ul>
+      <div className='challenge-desc'>
+        <p>{challenge.description}</p>
+        <h4>Trophies Needed:</h4>
+        <ul>
+          {challenge.trophiesNeeded.map(trophy => (
+            <li key={trophy.id}>
+              <strong>{trophy.name}</strong> - {trophy.description}
+            </li>
+          ))}
+        </ul>        
+      </div>
     </div>
   );
 };
