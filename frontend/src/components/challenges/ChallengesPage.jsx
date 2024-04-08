@@ -13,14 +13,14 @@ export default function ChallengesPage(){
       trophiesNeeded: [
         {
           id: 1,
-          name: 'Premier League Champion',
+          name: 'Premier League',
           description: 'Win the Premier League title.',
           competition: 'Premier League',
           country: 'England'
         },
         {
           id: 2,
-          name: 'FA Cup Winner',
+          name: 'FA Cup',
           description: 'Win the FA Cup.',
           competition: 'FA Cup',
           country: 'England'
